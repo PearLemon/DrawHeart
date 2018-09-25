@@ -60,23 +60,23 @@ public class DrawHeart extends View {
         }
     }
 
-//    public Path getPath() {
-//        Path path = new Path(); // 初始化 Path 对象
-//        path.addArc(200, 200, 400, 400, -225, 225);
-//        path.arcTo(400, 200, 600, 400, -180, 225, false);
-//        path.lineTo(400, 542);
-//        path.close();
-//        return path;
-//    }
-
-    public Path getPath(){
-        Path path = new Path();
-        path.moveTo(200,200);
-        path.lineTo(600, 200);
-        path.lineTo(350, 400);
+    public Path getPath() {
+        Path path = new Path(); // 初始化 Path 对象
+        path.addArc(200, 200, 400, 400, -225, 225);
+        path.arcTo(400, 200, 600, 400, -180, 225, false);
+        path.lineTo(400, 542);
         path.close();
         return path;
     }
+
+//    public Path getPath(){
+//        Path path = new Path();
+//        path.moveTo(200,200);
+//        path.lineTo(600, 200);
+//        path.lineTo(350, 400);
+//        path.close();
+//        return path;
+//    }
 
     public void setPath(Path path){
         keyframes = new Keyframes(path);
