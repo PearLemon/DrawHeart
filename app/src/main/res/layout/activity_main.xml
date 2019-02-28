@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <com.lemon.drawheart.DrawHeart
+    <com.lemon.drawheart.HeartView
         android:id="@+id/drawHeart"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <com.lemon.drawheart.FlowerView
+        android:id="@+id/flowerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.dk.view.patheffect.PathTextView
+        android:id="@+id/pathView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="156dp"/>
+
+</RelativeLayout>
