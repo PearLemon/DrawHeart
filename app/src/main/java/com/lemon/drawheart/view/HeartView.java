@@ -1,4 +1,4 @@
-package com.lemon.drawheart;
+package com.lemon.drawheart.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -7,7 +7,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -66,9 +68,7 @@ public class HeartView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        paint.setColor(Color.RED);
         canvas.drawPath(getPath(), paint);
-        paint.setColor(color);
         if (points != null) {
             canvas.drawPoints(points, paint);
         }
@@ -123,7 +123,7 @@ public class HeartView extends View {
         path.arcTo(screenWidth / 2f, screenWidth / 4f
                 , screenWidth / 8f * 7f, screenWidth / 8f * 5f
                 , -180, 225, false);
-        path.lineTo(screenWidth / 2f, screenWidth/ 8f * 7f);
+        path.lineTo(screenWidth / 2f, screenWidth / 8f * 7f);
         path.close();
         return path;
     }
@@ -141,22 +141,19 @@ public class HeartView extends View {
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.setRepeatMode(ValueAnimator.RESTART);
         valueAnimator.setStartDelay(520);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float currentProgress = (float) animation.getAnimatedValue();
-                float startProgress, endProgress;
-                startProgress = 1F + currentProgress;
-                endProgress = currentProgress;
-                if (endProgress < 0) {
-                    endProgress = 0;
-                }
-                if (startProgress > 1) {
-                    startProgress = 1;
-                }
-                setLineProgress(startProgress, endProgress);
-                invalidate();
+        valueAnimator.addUpdateListener((ValueAnimator animation) -> {
+            float currentProgress = (float) animation.getAnimatedValue();
+            float startProgress, endProgress;
+            startProgress = 1F + currentProgress;
+            endProgress = currentProgress;
+            if (endProgress < 0) {
+                endProgress = 0;
             }
+            if (startProgress > 1) {
+                startProgress = 1;
+            }
+            setLineProgress(startProgress, endProgress);
+            invalidate();
         });
         valueAnimator.start();
     }

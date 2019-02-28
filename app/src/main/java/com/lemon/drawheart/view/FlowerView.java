@@ -1,4 +1,4 @@
-package com.lemon.drawheart;
+package com.lemon.drawheart.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -9,8 +9,10 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.ViewGroup;
@@ -18,6 +20,8 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.lemon.drawheart.R;
 
 import java.util.Random;
 
@@ -99,13 +103,10 @@ public class FlowerView extends FrameLayout {
         final ValueAnimator animator = ValueAnimator.ofObject(new MyTypeEvaluator(getPoint(0), getPoint(1)), endPoint, startPoint);
         animator.setDuration(4000);
         animator.setInterpolator(new AccelerateDecelerateInterpolator());
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                PointF pointF = (PointF) animation.getAnimatedValue();
-                flower.setX(pointF.x);
-                flower.setY(pointF.y);
-            }
+        animator.addUpdateListener((ValueAnimator animation) -> {
+            PointF pointF = (PointF) animation.getAnimatedValue();
+            flower.setX(pointF.x);
+            flower.setY(pointF.y);
         });
 
         //  animator.start();

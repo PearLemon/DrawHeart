@@ -3,22 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.lemon.drawheart.HeartView
-        android:id="@+id/drawHeart"
+    <com.lemon.drawheart.view.HeartView
+        android:id="@+id/heartView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.lemon.drawheart.FlowerView
+    <com.lemon.drawheart.view.FlowerView
         android:id="@+id/flowerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.dk.view.patheffect.PathTextView
-        android:id="@+id/pathView"
+        android:id="@+id/pathView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="156dp"/>
+        android:layout_marginBottom="232dp"/>
+
+    <com.dk.view.patheffect.PathTextView
+        android:id="@+id/pathView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="176dp"/>
 
 </RelativeLayout>
