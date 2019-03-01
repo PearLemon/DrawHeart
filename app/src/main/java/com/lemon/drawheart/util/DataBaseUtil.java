@@ -12,7 +12,7 @@ public class DataBaseUtil {
     //数据库文件路径
     private static final String DB_PATH = "data/data/com.lemon.drawheart/databases/";
     //数据库文件名
-    private static final String DB_NAME = "heart.db";
+    private static final String DB_NAME = "present.db";
 
     public static SQLiteDatabase openDatabase(Context context) {
         File jhPath = new File(DB_PATH + DB_NAME);

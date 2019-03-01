@@ -73,7 +73,7 @@ public class FlowerView extends FrameLayout {
     }
 
     public void startAnimation() {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 32; i++) {
             addFlower();
             flowerNumber++;
         }
@@ -92,13 +92,13 @@ public class FlowerView extends FrameLayout {
     private void toAnimation(final ImageView flower) {
         final AnimatorSet animatorSet = new AnimatorSet();
 
-        ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(flower, "alpha", 1.0f, 0.6f);
-        alphaAnim.setDuration(400);
+        ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(flower, "alpha", 1.0f, 0.52f);
+        alphaAnim.setDuration(520);
 
-        ObjectAnimator scaleAnimX = ObjectAnimator.ofFloat(flower, "scaleX", 0.4f, 1.0f);
-        ObjectAnimator scaleAnimY = ObjectAnimator.ofFloat(flower, "scaleY", 0.6f, 1.0f);
-        scaleAnimX.setDuration(1800);
-        scaleAnimY.setDuration(1800);
+        ObjectAnimator scaleAnimX = ObjectAnimator.ofFloat(flower, "scaleX", 0.78f, 1.0f);
+        ObjectAnimator scaleAnimY = ObjectAnimator.ofFloat(flower, "scaleY", 0.52f, 1.0f);
+        scaleAnimX.setDuration(3200);
+        scaleAnimY.setDuration(3200);
 
         final ValueAnimator animator = ValueAnimator.ofObject(new MyTypeEvaluator(getPoint(0), getPoint(1)), endPoint, startPoint);
         animator.setDuration(4000);

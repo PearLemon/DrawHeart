@@ -68,7 +68,9 @@ public class HeartView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        paint.setStrokeWidth(20);
         canvas.drawPath(getPath(), paint);
+        paint.setStrokeWidth(26);
         if (points != null) {
             canvas.drawPoints(points, paint);
         }
@@ -140,7 +142,7 @@ public class HeartView extends View {
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(-1F, 1F).setDuration(5200);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.setStartDelay(520);
+        valueAnimator.setStartDelay(52);
         valueAnimator.addUpdateListener((ValueAnimator animation) -> {
             float currentProgress = (float) animation.getAnimatedValue();
             float startProgress, endProgress;
