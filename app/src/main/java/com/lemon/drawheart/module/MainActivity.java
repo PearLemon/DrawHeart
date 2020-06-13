@@ -2,20 +2,21 @@ package com.lemon.drawheart.module;
 
 import android.content.Intent;
 import android.graphics.Color;
-
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-
 import android.os.Bundle;
 import android.view.View;
 
 import com.dk.view.patheffect.PathTextView;
 import com.lemon.drawheart.R;
-import com.lemon.drawheart.basic.BasicActivity;
+import com.lemon.drawheart.basic.BaseActivity;
 import com.lemon.drawheart.view.FlowerView;
 import com.lemon.drawheart.view.HeartView;
 
-public class MainActivity extends BasicActivity {
+import butterknife.BindView;
+
+/**
+ * @author lemon92xy
+ */
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.heartView)
     HeartView heartView;
@@ -39,6 +40,7 @@ public class MainActivity extends BasicActivity {
         heartView.setPath(heartView.getPath());
         heartView.startAnimation();
 
+        flowerView.setNeedRepeat(false);
         flowerView.startAnimation();
 
         pathView1.init("cherish the present");
@@ -47,9 +49,11 @@ public class MainActivity extends BasicActivity {
         pathView2.init("believe the future");
         setCommon(pathView2);
 
-        heartView.setOnClickListener((View v) -> {
-            startActivity(new Intent(MainActivity.this, LaughActivity.class));
-        });
+        heartView.setOnClickListener((View v) -> toLaughActivity());
+    }
+
+    public void toLaughActivity() {
+        startActivity(new Intent(MainActivity.this, LaughActivity.class));
     }
 
     public void setCommon(PathTextView pathTextView) {

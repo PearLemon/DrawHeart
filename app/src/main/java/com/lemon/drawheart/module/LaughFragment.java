@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.lemon.drawheart.R;
-import com.lemon.drawheart.basic.BasicFragment;
+import com.lemon.drawheart.basic.BaseFragment;
 import com.lemon.drawheart.dao.DaoSession;
 import com.lemon.drawheart.dao.PresentDao;
 import com.lemon.drawheart.entity.Present;
@@ -13,7 +13,10 @@ import com.lemon.drawheart.helper.GreenDaoHelper;
 
 import butterknife.BindView;
 
-public class LaughFragment extends BasicFragment {
+/**
+ * @author lemon92xy
+ */
+public class LaughFragment extends BaseFragment {
 
     @BindView(R.id.lottieView)
     LottieAnimationView lottieView;
@@ -41,18 +44,6 @@ public class LaughFragment extends BasicFragment {
         PresentDao presentDao = daoSession.getPresentDao();
         Present data = presentDao.queryBuilder().where(PresentDao.Properties.Id.eq(index)).uniqueOrThrow();
         tvLaugh.setText(data.getContent());
-        if(index %2 == 0) {
-            lottieView.setAnimation("cycle.json");
-        }else{
-            if(index %3 ==0){
-                lottieView.setAnimation("money.json");
-            }else {
-                if(index % 5 == 0) {
-                    lottieView.setAnimation("birds.json");
-                }else{
-                    lottieView.setAnimation("girl.json");
-                }
-            }
-        }
+        lottieView.setAnimation("girl.json");
     }
 }

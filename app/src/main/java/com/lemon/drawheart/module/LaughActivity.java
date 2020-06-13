@@ -1,12 +1,14 @@
 package com.lemon.drawheart.module;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.lemon.drawheart.R;
-import com.lemon.drawheart.basic.BasicActivity;
+import com.lemon.drawheart.basic.BaseActivity;
 import com.lemon.drawheart.dao.DaoSession;
 import com.lemon.drawheart.dao.PresentDao;
 import com.lemon.drawheart.helper.GreenDaoHelper;
@@ -16,7 +18,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class LaughActivity extends BasicActivity {
+/**
+ * @author lemon92xy
+ */
+public class LaughActivity extends BaseActivity {
 
     @BindView(R.id.viewPager)
     ViewPager viewPager;
@@ -34,12 +39,13 @@ public class LaughActivity extends BasicActivity {
     protected void afterCreate(Bundle savedInstanceState) {
         DaoSession daoSession = GreenDaoHelper.getSingleton().getDaoSession();
         PresentDao dataDao = daoSession.getPresentDao();
-        int count = (int) dataDao.count();//总数量
+        int count = (int) dataDao.count();
         fragmentList = new ArrayList<>();
         for (int i = 1; i <= count; i++) {
             fragmentList.add(LaughFragment.newInstance(i));
         }
         viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @NonNull
             @Override
             public Fragment getItem(int position) {
                 return fragmentList.get(position);

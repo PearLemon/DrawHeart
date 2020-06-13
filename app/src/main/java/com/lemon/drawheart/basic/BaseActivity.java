@@ -6,11 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 
 /**
+ * @author lemon92xy
  * 所有Activity的基类
  */
-public abstract class BasicActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
-    protected BasicActivity activity;
+    protected BaseActivity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +24,13 @@ public abstract class BasicActivity extends AppCompatActivity {
 
     /**
      * 获取布局
+     * @return int
      **/
     protected abstract int getLayoutId();
 
     /**
      * 布局创建之后
+     * @param savedInstanceState bundle params
      **/
     protected abstract void afterCreate(Bundle savedInstanceState);
 }

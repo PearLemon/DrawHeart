@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 
 /**
+ * @author lemon92xy
  * 所有Fragment的基类
  */
-public abstract class BasicFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
     FragmentActivity activity;
 
@@ -38,11 +39,13 @@ public abstract class BasicFragment extends Fragment {
 
     /**
      * 获取布局
+     * @return int
      **/
     protected abstract int getLayoutId();
 
     /**
      * 布局创建之后
+     * @param savedInstanceState bundle params
      **/
     protected abstract void afterCreate(Bundle savedInstanceState);
 }

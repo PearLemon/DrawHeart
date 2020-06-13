@@ -9,10 +9,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.ViewGroup;
@@ -21,11 +17,19 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.lemon.drawheart.R;
 
 import java.util.Random;
 
+/**
+ * @author lemon92xy
+ */
 public class FlowerView extends FrameLayout {
+
+    private static final int FLOWER_COUNT = 32;
 
     private PointF startPoint;
 
@@ -39,6 +43,12 @@ public class FlowerView extends FrameLayout {
 
     private int flowerNumber = 0;
 
+    private boolean needRepeat = false;
+
+    public void setNeedRepeat(boolean needRepeat) {
+        this.needRepeat = needRepeat;
+    }
+
     public FlowerView(@NonNull Context context) {
         this(context, null);
     }
@@ -50,7 +60,7 @@ public class FlowerView extends FrameLayout {
     public FlowerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
-        getScreenWH();
+        getScreenParams();
     }
 
     private void init() {
@@ -59,21 +69,23 @@ public class FlowerView extends FrameLayout {
         drawables[1] = getResources().getDrawable(R.mipmap.heart);
     }
 
-    private void getScreenWH() {
+    private void getScreenParams() {
         WindowManager windowManager = (WindowManager) getContext()
                 .getSystemService(Context.WINDOW_SERVICE);
         if (windowManager != null) {
             DisplayMetrics displayMetrics = new DisplayMetrics();
             windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-            screenWidth = displayMetrics.widthPixels;  // 屏幕宽
-            screenHeight = displayMetrics.heightPixels;  // 屏幕高
+            // 屏幕宽
+            screenWidth = displayMetrics.widthPixels;
+            // 屏幕高
+            screenHeight = displayMetrics.heightPixels;
         }
         startPoint = new PointF(screenWidth / 2f - 50, screenHeight);
         endPoint = new PointF(screenWidth / 2f - 50, 0);
     }
 
     public void startAnimation() {
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < FLOWER_COUNT; i++) {
             addFlower();
             flowerNumber++;
         }
@@ -109,7 +121,6 @@ public class FlowerView extends FrameLayout {
             flower.setY(pointF.y);
         });
 
-        //  animator.start();
         animatorSet.play(animator);
         animatorSet.play(scaleAnimX).with(scaleAnimY).before(alphaAnim);
         animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -118,7 +129,7 @@ public class FlowerView extends FrameLayout {
                 super.onAnimationEnd(animation);
                 removeView(flower);
                 flowerNumber--;
-                if (flowerNumber == 0) {
+                if (flowerNumber == 0 && needRepeat) {
                     startAnimation();
                 }
             }
@@ -138,7 +149,7 @@ public class FlowerView extends FrameLayout {
     }
 
 
-    class MyTypeEvaluator implements TypeEvaluator<PointF> {
+    static class MyTypeEvaluator implements TypeEvaluator<PointF> {
 
         private PointF pointF1, pointF2;
 

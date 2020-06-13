@@ -7,6 +7,9 @@ import com.lemon.drawheart.dao.DaoMaster;
 import com.lemon.drawheart.dao.DaoSession;
 import com.lemon.drawheart.util.DataBaseUtil;
 
+/**
+ * @author lemon92xy
+ */
 public class GreenDaoHelper {
     private SQLiteDatabase database;
     private DaoMaster daoMaster;
